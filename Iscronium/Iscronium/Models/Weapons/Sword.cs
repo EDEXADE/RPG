@@ -2,9 +2,7 @@ namespace Iscronium.Models.Weapons;
 
 public class Sword: Weapon
 {
-    public 
-    
-    public Sword(string name, string description)
+    public Sword(string name, string description) : base(name, description)
     {
         Name = name;
         Description = description;

@@ -1,6 +1,18 @@
 namespace Iscronium.Models;
 
-public abstract class Weapon : IItem
+public class Weapon: Item, Actions.IEquipped
 {
-    public IItem.ItemType Type { get; init; } = IItem.ItemType.Collection;
+    
+    protected Weapon(string name, string description) : base(name, description, ItemType.Weapon)
+    {
+        
+    }
+
+    public override void Use()
+    {
+        
+    }
+    public void PutOn() => Console.WriteLine($"Equipped");
+
+    public void TakeOff() => Console.WriteLine("Unequipped");
 }

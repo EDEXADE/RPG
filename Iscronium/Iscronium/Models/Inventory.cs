@@ -1,13 +1,11 @@
-using System.ComponentModel.Design;
-
 namespace Iscronium.Models;
 
 public class Inventory
 {
-    public List<(IItem, int)> Slots;
+    public List<(Item, int)> Slots;
     public int MaxSlots { get; private set; }
 
-    public (IItem, int) this[int index]
+    public (Item, int) this[int index]
     {
         get
         {
@@ -19,17 +17,17 @@ public class Inventory
     
     public Inventory(int maxCount = 10)
     {
-        Slots = new List<(IItem, int)>();
+        Slots = new List<(Item, int)>();
         MaxSlots = maxCount;
     }
 
-    public bool Add(IItem item)
+    public bool Add(Item item)
     {
         // return index of free slot (< 16 ones) of same item
         // or -1 if no free slots
         int index =
             Slots.FindIndex(slot => slot.Item1 == item && slot.Item2 < 16);
-        // True if there is free slot (< 16 ones) of same item
+        // return True if there is free slot (< 16 ones) of same item
         bool hasSameFree = (index != -1);
 
         if (hasSameFree)
