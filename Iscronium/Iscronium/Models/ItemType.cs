@@ -6,5 +6,13 @@ public enum ItemType
     Equipment,
     Food,
     Potion,
-    Collection
+    Collection,
+}
+
+public enum WeaponType
+{
+    Dagger,
+    Sword,
+    Lance,
+    Bow,
 }
