@@ -1,5 +1,6 @@
 ﻿using System;
 using Iscronium.Models;
+using Iscronium.Models.Items;
 using Iscronium.Models.Weapons;
 
 Console.WriteLine("Hello, World!");

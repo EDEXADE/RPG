@@ -1,3 +1,5 @@
+using Iscronium.Models.Items;
+
 namespace Iscronium.Models;
 
 public class Inventory

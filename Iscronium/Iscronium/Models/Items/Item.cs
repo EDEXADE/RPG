@@ -1,4 +1,4 @@
-namespace Iscronium.Models;
+namespace Iscronium.Models.Items;
 
 
 // Class for all items

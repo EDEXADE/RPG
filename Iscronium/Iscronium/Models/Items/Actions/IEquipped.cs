@@ -1,4 +1,4 @@
-namespace Iscronium.Models;
+namespace Iscronium.Models.Items.Actions;
 
 public interface IEquipped
 {
@@ -8,6 +8,6 @@ public interface IEquipped
     // ???
     /*
     public void PutOn(ItemType type, string name) => Console.WriteLine(f"Equipped {type} {name}");
-    public void TakeOff(ItemType type, string name) => Console.WriteLine() => Console.WriteLine(f"Unequipped {type} {name}");
+    public void TakeOff(ItemType type, string name) => Console.WriteLine(f"Unequipped {type} {name}");
     */
 }
