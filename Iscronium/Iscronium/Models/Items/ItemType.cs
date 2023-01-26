@@ -1,4 +1,4 @@
-﻿namespace Iscronium.Models;
+﻿namespace Iscronium.Models.Items;
 
 public enum ItemType
 {

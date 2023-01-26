@@ -29,26 +29,6 @@ public struct Stat
 
 public class Stats
 {
-    // I really don't know List or Dictionary? All of them have nuances 
-    /*
-    private List<Stat> _stats;
-
-    public Stats()
-    {
-        _stats = new List<Stat>
-        {
-            new Stat(),
-            new Stat(),
-            new Stat(),
-            new Stat(),
-            new Stat(),
-
-            // free points (to choose) WARNING! Only for main stats, not unique
-            // todo: maybe put into another variable??
-            new Stat(),
-        };    
-    }
-    */
     private readonly List<string> INIT_VALUES = new List<string>()
     {
         "Сила", "Ловкость", "Интеллект", "Выносливость",

@@ -2,13 +2,17 @@ using Iscronium.Models.Items.Actions;
 
 namespace Iscronium.Models.Items;
 
-// Class of all weapons. Can be equipped. (Item, IEquipped)
-public abstract class Weapon: Item, IEquipped
+// Class of all weapons.
+// This is item. Can be equipped. (Item, IEquipped)
+public class Weapon: Item, IEquipped
 {
-    // Yeah, yeah '!true', because 'false' - default value...
-    private bool _isEquipped = !true;
-
-    public override ItemType GetType() => ItemType.Weapon;
+    // Constructor
+    public Weapon(string name, string description, Uri photo)
+        : base(ItemType.Weapon, name, description, photo)
+    {
+    }
+    
+    // Realise abstraction of Item
 
     public override void Use()
     {
@@ -18,7 +22,12 @@ public abstract class Weapon: Item, IEquipped
             PutOn();
         _isEquipped = !_isEquipped;
     }
-    public void PutOn() => Console.WriteLine($"Equipped {GetType()} {GetInfo().Item1}");
-
-    public void TakeOff() => Console.WriteLine($"Unequipped {GetType()} {GetInfo().Item1}");
+    
+    // Realise interface IEquipped
+    
+    // Yeah, yeah '!true', because 'false' - default value...
+    private bool _isEquipped = !true;
+    
+    public void PutOn() => Console.WriteLine($"Equipped {GetType()} {1}");
+    public void TakeOff() => Console.WriteLine($"Unequipped {GetType()} {1}");
 }

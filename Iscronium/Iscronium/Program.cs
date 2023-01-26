@@ -1,7 +1,6 @@
 ﻿using System;
 using Iscronium.Models;
 using Iscronium.Models.Items;
-using Iscronium.Models.Weapons;
 
 Console.WriteLine("Hello, World!");
 Item ironSword = new Sword("Iron Sword", "Simple sword. Was made in India by Aleo Rosakke");
