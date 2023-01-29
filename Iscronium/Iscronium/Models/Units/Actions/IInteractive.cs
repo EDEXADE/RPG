@@ -2,5 +2,5 @@ namespace Iscronium.Models.Units.Actions;
 
 public interface IInteractive
 {
-    public void Interactive();
+    public void Interact(Player player);
 }

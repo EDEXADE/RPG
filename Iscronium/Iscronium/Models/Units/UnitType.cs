@@ -2,7 +2,7 @@ namespace Iscronium.Models.Units;
 
 public enum UnitType
 {
-    Hero,
+    Player,
     NPC,
     Monster
 }

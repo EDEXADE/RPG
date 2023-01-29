@@ -3,6 +3,7 @@ namespace Iscronium.Models.Items;
 // Class for all items
 public abstract class Item
 {
+    public string name;
     // Properties
     private ItemType Type { get; }
     private string Name { get; }
@@ -14,7 +15,7 @@ public abstract class Item
         string name, string description, Uri photo)
     {
         Type = type;
-        Name = name;
+        Name = this.name = name;
         Description = description;
         Photo = photo;
     }

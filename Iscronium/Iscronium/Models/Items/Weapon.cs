@@ -24,10 +24,9 @@ public class Weapon: Item, IEquipped
     }
     
     // Realise interface IEquipped
-    
     // Yeah, yeah '!true', because 'false' - default value...
     private bool _isEquipped = !true;
     
-    public void PutOn() => Console.WriteLine($"Equipped {GetType()} {1}");
-    public void TakeOff() => Console.WriteLine($"Unequipped {GetType()} {1}");
+    public void PutOn() => Console.WriteLine($"Equipped {this.ToString()} {name}");
+    public void TakeOff() => Console.WriteLine($"Unequipped {this.ToString()} {name}");
 }

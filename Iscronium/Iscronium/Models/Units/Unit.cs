@@ -1,15 +1,19 @@
-using Iscronium.Models.Items;
+    using System.Reflection.Metadata;
+    using Iscronium.Models.Items;
 
 namespace Iscronium.Models.Units;
 
-public class Unit
+public abstract class Unit
 {
-    
+    // Properties
     public string Name { get; }
     public UnitType Type { get; }
+
+    // Constructor
     public Unit(string name, UnitType type)
     {
         Name = name;
         Type = type;
     }
+    
 }

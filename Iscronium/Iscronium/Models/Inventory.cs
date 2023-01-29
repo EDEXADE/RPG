@@ -1,4 +1,5 @@
 using Iscronium.Models.Items;
+using Iscronium.Models.Items.Actions;
 
 namespace Iscronium.Models;
 
@@ -56,6 +57,22 @@ public class Inventory
         return false;
     }
 
+    public void Use(Item item)
+    {
+        int index = _slots.FindLastIndex(slot => slot.Item1 == item);
+        if (index == -1)
+        {
+            // todo 
+            // need report for bug or abuse 
+            //? throw new Exception("Wow! U try to use this item, but u don't have it");
+            Console.WriteLine("Wow! U try to use this item, but u don't have it");
+            return;
+        }
+        _slots[index].Item1.Use();
+        if (_slots[index].Item1 is IConsumable)
+            Remove(_slots[index].Item1);
+    }
+    
     public void Remove(Item item)
     {
         int index = _slots.FindLastIndex(slot => slot.Item1 == item);
@@ -63,7 +80,9 @@ public class Inventory
         {
             // todo 
             // need report for bug or abuse 
-            throw new Exception("Wow! U try to delete this item, but u don't have it");            
+            //? throw new Exception("Wow! U try to delete this item, but u don't have it");
+            Console.WriteLine("Wow! U try to delete this item, but u don't have it");
+            return;
         }
 
         (Item neededItem, int count) = _slots[index];
