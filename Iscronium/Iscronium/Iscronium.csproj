@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Folder Include="Core\UserControl" />
       <Folder Include="Models\Exceptions" />
     </ItemGroup>
 

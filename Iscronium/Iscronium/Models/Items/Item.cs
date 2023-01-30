@@ -3,20 +3,21 @@ namespace Iscronium.Models.Items;
 // Class for all items
 public abstract class Item
 {
-    public string name;
-    // Properties
-    private ItemType Type { get; }
-    private string Name { get; }
-    private string Description { get; }
+    // Fields
+    public readonly string name;
+    public readonly string description;
+    public readonly ItemType type;
+    
+    // Properties ??
     private Uri Photo { get; }
     
     // Constructor
     public Item(ItemType type,
         string name, string description, Uri photo)
     {
-        Type = type;
-        Name = this.name = name;
-        Description = description;
+        this.type = type;
+        this.name = name;
+        this.description = description;
         Photo = photo;
     }
 
@@ -24,6 +25,15 @@ public abstract class Item
     public abstract void Use();
 
     // Virtual methods, what can override if necessary
+    public virtual void GetInfo()
+    {
+        Console.WriteLine("About");
+        Console.WriteLine($"Type: {type}");
+        Console.WriteLine($"Name: {name}");
+        Console.WriteLine($"Description: {description}");
+        Console.WriteLine();
+    }
+    
     public virtual void Remove()
     {
         

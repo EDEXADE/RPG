@@ -62,10 +62,10 @@ public class Inventory
         int index = _slots.FindLastIndex(slot => slot.Item1 == item);
         if (index == -1)
         {
+            Console.WriteLine("Wow! U try to use this item, but u don't have it");
             // todo 
             // need report for bug or abuse 
             //? throw new Exception("Wow! U try to use this item, but u don't have it");
-            Console.WriteLine("Wow! U try to use this item, but u don't have it");
             return;
         }
         _slots[index].Item1.Use();
@@ -78,10 +78,10 @@ public class Inventory
         int index = _slots.FindLastIndex(slot => slot.Item1 == item);
         if (index == -1)
         {
+            Console.WriteLine("Wow! U try to delete this item, but u don't have it");
             // todo 
             // need report for bug or abuse 
             //? throw new Exception("Wow! U try to delete this item, but u don't have it");
-            Console.WriteLine("Wow! U try to delete this item, but u don't have it");
             return;
         }
 

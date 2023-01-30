@@ -12,8 +12,13 @@ public class Weapon: Item, IEquipped
     {
     }
     
+    // Methods
+    public void OnAtack()
+    {
+        
+    }
+    
     // Realise abstraction of Item
-
     public override void Use()
     {
         if (_isEquipped)
@@ -27,6 +32,6 @@ public class Weapon: Item, IEquipped
     // Yeah, yeah '!true', because 'false' - default value...
     private bool _isEquipped = !true;
     
-    public void PutOn() => Console.WriteLine($"Equipped {this.ToString()} {name}");
-    public void TakeOff() => Console.WriteLine($"Unequipped {this.ToString()} {name}");
+    public void PutOn() => Console.WriteLine($"Equipped {type} {name}");
+    public void TakeOff() => Console.WriteLine($"Unequipped {type} {name}");
 }
