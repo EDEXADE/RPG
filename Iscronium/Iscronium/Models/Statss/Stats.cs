@@ -1,5 +1,3 @@
-using System.Threading.Channels;
-
 namespace Iscronium.Models.Statss;
 
 public class Stats
@@ -43,6 +41,8 @@ public class Stats
         }
     }
 
+    public void AddAP(int points = 2) => FreePoints += points;
+
     public bool Add(/*string stat_name*/ StatType stat_name)
     {
         if (FreePoints <= 0)
@@ -79,6 +79,5 @@ public class Stats
         foreach (var statName in _stats.Values)
             Console.WriteLine($"{statName.Type} - {statName.Value}");
         Console.WriteLine($"Available points: {FreePoints}");
-        Console.WriteLine();
     }
 }

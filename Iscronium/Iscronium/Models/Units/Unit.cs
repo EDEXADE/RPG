@@ -4,7 +4,7 @@ public abstract class Unit
 {
     // Fields
     public readonly string name;
-    public readonly UnitType type;
+    public readonly UnitType unitType;
     
     // Properties
     // ??
@@ -14,7 +14,7 @@ public abstract class Unit
     public Unit(string name, UnitType type)
     {
         this.name = name;
-        this.type = type;
+        this.unitType = type;
     }
     
 }

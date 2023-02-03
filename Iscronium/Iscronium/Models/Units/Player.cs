@@ -6,9 +6,12 @@ namespace Iscronium.Models.Units;
 
 public class Player: Unit, IInteractive
 {
+    // Fields
     private readonly Level _level;
     private readonly Stats _stats;
     private readonly Inventory _inventory;
+
+    // Constructor
     public Player(string name)
         : base(name, UnitType.Player)
     {
@@ -17,19 +20,30 @@ public class Player: Unit, IInteractive
         _inventory = new Inventory();
     }
 
+    // Getters (if neccessary in future)
     public Level GetLevel() => _level;
     public Stats GetStats() => _stats;
     public Inventory GetInventory() => _inventory;
 
-    public void Add(Item item)
+    // Methods
+    public void onNewLvl(int level)
     {
-        _inventory.Add(item);
+        // Messages. Soon will be as <srting> events
+        Console.WriteLine("New level! {level}");
+        Console.WriteLine($"+2 available stats points!");
+        // 
+        _stats.AddAP();
     }
+    public void AddExp(int exp)
+    {
+        List<int> newLevels = _level.AddExp(exp);
+        foreach (int level in newLevels)
+            onNewLvl(level);
+    }
+
+    public void Add(Item item) => _inventory.Add(item);
     
-    public void Use(Item item)
-    {
-        _inventory.Use(item);
-    }
+    public void Use(Item item) => _inventory.Use(item);
 
     public void Interact(Player player)
     {
@@ -45,9 +59,15 @@ public class Player: Unit, IInteractive
 
     public void About()
     {
-        Console.WriteLine($"Profile of {name}:");
+        Console.WriteLine($"My profile:");
         Console.WriteLine($"Name: {name}");
+        /*
+         * todo
+        Console.WriteLine($"Race: {rase}");
         Console.WriteLine($"Type: {type}");
+        */
+
         _level.GetInfo();
+        _stats.GetInfo();
     }
 }

@@ -19,24 +19,34 @@ public class Level
     }
     
     // Methods
-    public void AddExp(int exp)
+    private void LevelUp()
     {
+        CurrentLevel += 1;
+        CurrentExp = 0;
+        MaxExp += INIT_DIF_EXP;
+    }
+
+    public List<int> AddExp(int exp)
+    {
+        List<int> newLevels = new();
+
         int toNextLvl;
         while (exp >= (toNextLvl = MaxExp - CurrentExp))
         {
             exp -= toNextLvl;
-            
-            CurrentLevel += 1;
-            CurrentExp = 0;
-            MaxExp += INIT_DIF_EXP;
+
+            LevelUp();
+            newLevels.Add(CurrentLevel);
         }
         CurrentExp += exp;
+
+        // count of new levels
+        return newLevels;
     }
     
     public void GetInfo()
     {
         Console.WriteLine($"Level: {CurrentLevel}");
         Console.WriteLine($"Experience: [{CurrentExp}/{MaxExp}]");
-        Console.WriteLine();
     }
 }
