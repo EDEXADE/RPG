@@ -7,8 +7,8 @@ Item ironSword = new Weapon("Iron Sword", "Simple sword. Was made in India by Al
 Item ironSword2 = new Weapon("Gold Sword", "Is it real gold? Maybe sell it?", null);
 
 Unit me = new Player("EDEXADE");
-Unit anotherPlayer = new Player("Walker Esser");
 
+Unit anotherPlayer = new Player("Walker Esser");
 ((Player)me).Interact((Player)anotherPlayer);
 ((Player)me).Interact(anotherPlayer);
 

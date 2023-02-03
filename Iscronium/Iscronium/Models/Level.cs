@@ -35,7 +35,7 @@ public class Level
     
     public void GetInfo()
     {
-        Console.WriteLine($"Lvl: {CurrentLevel}");
+        Console.WriteLine($"Level: {CurrentLevel}");
         Console.WriteLine($"Experience: [{CurrentExp}/{MaxExp}]");
         Console.WriteLine();
     }
