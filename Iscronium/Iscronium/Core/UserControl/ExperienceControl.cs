@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Iscronium.Models.Units;
 
 namespace Iscronium.Core.UserControl
 {
     public class ExperienceControl
     {
-
+        public void AddExp(Player player, int exp) => player.AddExp(exp);
     }
 }

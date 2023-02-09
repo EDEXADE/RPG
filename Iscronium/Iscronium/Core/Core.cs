@@ -1,23 +1,32 @@
-using System.Threading.Channels;
+
+using Iscronium.Core.UserControl;
 using Iscronium.Models.Units;
 
 namespace Iscronium.Core;
 
 public class Core
 {
-    private readonly Player _player;
+    private readonly CreationControl _crControl;
+    private readonly ExperienceControl _expControl;
+    
+    private readonly Dictionary<int, Player> _players;
+    
     public Core()
     {
-        _player = CreateCharacter();
-        Start();
+        _crControl = new CreationControl();
+        _expControl = new ExperienceControl();
+
+        _players = new Dictionary<int, Player>();
     }
-    
-    private Player CreateCharacter()
+
+    public Player CreatePlayer(string name)
     {
-        Console.WriteLine("Enter your name: ");
-        string name = Console.ReadLine() ?? "Player";
-        return new Player(name);
+        var (id, player) = _crControl.CreatePlayer(name);
+        _players.Add(id, player);
+        return player;
     }
+
+    public void AddExp(Player player, int exp) => _expControl.AddExp(player, exp);
 
     public void Start()
     {

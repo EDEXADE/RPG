@@ -1,29 +1,29 @@
+/* DEPRECATED */
+/* Reason: it have no reasons))) we will created same object (but in dict) in /Stats.cs
+/*
 namespace Iscronium.Models.Statss;
 
 public struct Stat
 {
-    const int INIT_VALUE = 2;
+    private const int InitValue = 2;
 
-    //private int value = 2;
-    public string Name { get; }
     public StatType Type { get; }
     public int Value { get; private set; }
 
     
-    public Stat(string name = "", StatType type = StatType.Strength)
+    public Stat(StatType type, int value = InitValue)
     { 
-        /* rlly? */
         Type = type;
-        Name = name;
-        Value = INIT_VALUE;
+        Value = value;
     }
     
     // why have no int parameter? Soon will become clearer.. todo
     public void Add() => Value += 1;
     public int Reset()
     {
-        int difference = Value - INIT_VALUE;
-        Value = INIT_VALUE;
+        int difference = Value - InitValue;
+        Value = InitValue;
         return difference;
     }
 }
+*/

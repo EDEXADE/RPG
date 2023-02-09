@@ -7,43 +7,42 @@ namespace Iscronium.Models.Units;
 public class Player: Unit, IInteractive
 {
     // Fields
-    private readonly Level _level;
-    private readonly Stats _stats;
-    private readonly Inventory _inventory;
+    public Level Level { get; private set; }
+    public readonly Stats Stats;
+    public readonly Inventory Inventory;
 
     // Constructor
     public Player(string name)
         : base(name, UnitType.Player)
     {
-        _level = new Level();
-        _stats = new Stats();
-        _inventory = new Inventory();
+        Level = new Level();
+        Stats = new Stats();
+        Inventory = new Inventory();
     }
-
-    // Getters (if neccessary in future)
-    public Level GetLevel() => _level;
-    public Stats GetStats() => _stats;
-    public Inventory GetInventory() => _inventory;
-
+    
+    // Getters
+    
+    
     // Methods
-    public void onNewLvl(int level)
+    private void OnNewLvl(int level)
     {
-        // Messages. Soon will be as <srting> events
-        Console.WriteLine("New level! {level}");
-        Console.WriteLine($"+2 available stats points!");
-        // 
-        _stats.AddAP();
+        // Messages. Soon will be as <string> events
+        Console.WriteLine($"New level! {level}");
+        Console.WriteLine("+2 available stats points!");
+        
+        // Change state other subclasses
+        Stats.AddFP();
     }
+    
     public void AddExp(int exp)
     {
-        List<int> newLevels = _level.AddExp(exp);
-        foreach (int level in newLevels)
-            onNewLvl(level);
+        int last_level = Level.CurrentLevel;
+        Level = new Level(Level, exp);
+        for (int i = last_level + 1; i <= Level.CurrentLevel; i++)
+            OnNewLvl(i);
     }
-
-    public void Add(Item item) => _inventory.Add(item);
     
-    public void Use(Item item) => _inventory.Use(item);
+    public void Use(Item item) => Inventory.Use(item);
 
     public void Interact(Player player)
     {
@@ -62,12 +61,12 @@ public class Player: Unit, IInteractive
         Console.WriteLine($"My profile:");
         Console.WriteLine($"Name: {name}");
         /*
-         * todo
-        Console.WriteLine($"Race: {rase}");
+         * todo.
+        Console.WriteLine($"Race: {race}");
         Console.WriteLine($"Type: {type}");
         */
 
-        _level.GetInfo();
-        _stats.GetInfo();
+        Level.GetInfo();
+        Stats.GetInfo();
     }
 }

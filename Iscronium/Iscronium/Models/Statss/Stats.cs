@@ -1,56 +1,44 @@
+using System.Collections.Immutable;
+
 namespace Iscronium.Models.Statss;
 
 public class Stats
 {
+    private const int InitValue = 2;
     // try to use Enum instead string
-    /*
-    private readonly List<string> INIT_VALUES2 = new List<string>()
-    {
-        "Сила", "Ловкость", "Интеллект", "Выносливость",
-    };
-    */
-    
-    private readonly List<StatType> INIT_VALUES = new List<StatType>()
+    private static readonly List<StatType> InitValues = new()
     {
         StatType.Strength, StatType.Dexterity, StatType.Intellect, StatType.Stamina,
     };
-    
-    /* private Dictionary<string, Stat> _stats; */
-    private Dictionary<StatType, Stat> _stats;
 
-    private int FreePoints;
-    
+    private readonly Dictionary<StatType, int> _stats;
+
+    public ImmutableDictionary<StatType, int> GetStats()
+    {
+        return _stats.ToImmutableDictionary();
+    }
+    public int FreePoints { get; private set; }
+
     public Stats()
     {
+        _stats = new Dictionary<StatType, int>(); 
+        foreach (var statType in InitValues)
+            _stats.Add(statType, InitValue);
+        
         FreePoints = 5;
-        
-        /*
-        _stats = new Dictionary<string, Stat>(); 
-        foreach (var stat_name in INIT_VALUES)
-        {
-            Stat stat = new Stat(stat_name);
-            _stats.Add(stat_name, stat);
-        }
-        */
-        
-        _stats = new Dictionary<StatType, Stat>(); 
-        foreach (var statType in INIT_VALUES)
-        {
-            Stat stat = new Stat("", statType);
-            _stats.Add(statType, stat);
-        }
     }
 
-    public void AddAP(int points = 2) => FreePoints += points;
+    public void AddFP(int points = InitValue) => FreePoints += points;
 
-    public bool Add(/*string stat_name*/ StatType stat_name)
+    public bool Add(StatType statName)
     {
         if (FreePoints <= 0)
         {
             Console.WriteLine("You don't have free points");
             return false;
         }
-        if (!_stats.ContainsKey(stat_name))
+        
+        if (!_stats.ContainsKey(statName))
         {
             Console.WriteLine("Wow! U try to increase this stat, but u don't have it");
             // todo 
@@ -58,17 +46,18 @@ public class Stats
             //? throw new Exception("Wow! U try to use this item, but u don't have it");
             return false;
         }
-            
-        _stats[stat_name].Add();
+
+        _stats[statName]++;
         FreePoints--;
         return true;
     }
     
     public void Reset()
     {
-        foreach (var stat_name in INIT_VALUES)
+        foreach (var statType in InitValues)
         {
-            int points = _stats[stat_name].Reset();
+            int points = _stats[statType] - 2;
+            _stats[statType] = 2;
             FreePoints += points;
         }
     }
@@ -76,8 +65,8 @@ public class Stats
     public void GetInfo()
     {
         Console.WriteLine("Stats:");
-        foreach (var statName in _stats.Values)
-            Console.WriteLine($"{statName.Type} - {statName.Value}");
+        foreach (var (stat, value) in _stats)
+            Console.WriteLine($"{stat} - {value}");
         Console.WriteLine($"Available points: {FreePoints}");
     }
 }
