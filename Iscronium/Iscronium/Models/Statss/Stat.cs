@@ -17,7 +17,7 @@ public struct Stat
         Value = value;
     }
     
-    // why have no int parameter? Soon will become clearer.. todo
+    // why have no int parameter? Soon will become clearer.. todo//
     public void Add() => Value += 1;
     public int Reset()
     {

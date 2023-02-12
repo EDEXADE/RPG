@@ -1,24 +1,39 @@
-using System.Collections.Immutable;
+    using System.Collections.Immutable;
+using System.Reflection.Metadata;
 
 namespace Iscronium.Models.Statss;
 
 public class Stats
 {
+    // Const
     private const int InitValue = 2;
-    // try to use Enum instead string
     private static readonly List<StatType> InitValues = new()
     {
-        StatType.Strength, StatType.Dexterity, StatType.Intellect, StatType.Stamina,
+        StatType.Strength, 
+        StatType.Dexterity, 
+        StatType.Intellect, 
+        StatType.Stamina,
     };
-
-    private readonly Dictionary<StatType, int> _stats;
-
-    public ImmutableDictionary<StatType, int> GetStats()
-    {
-        return _stats.ToImmutableDictionary();
-    }
+    
+    // Fields and/or 
+    private Dictionary<StatType, int> _stats { get; }
     public int FreePoints { get; private set; }
+    
+    // Getters
+    public StatType[] GetStats() => _stats.Keys.ToArray();
+    public int GetStat(StatType type)
+    {
+        if (_stats.TryGetValue(type, out int value))
+            return value;
 
+        Console.WriteLine("Wow! U try to increase this stat, but u don't have it");
+        return 0;
+        // todo 
+        // need report for bug or abuse 
+        //? throw new Exception("Wow! U try to get this stat, but u don't have it");
+    }
+
+    // Constructor
     public Stats()
     {
         _stats = new Dictionary<StatType, int>(); 
@@ -28,6 +43,7 @@ public class Stats
         FreePoints = 5;
     }
 
+    // Methods
     public void AddFP(int points = InitValue) => FreePoints += points;
 
     public bool Add(StatType statName)

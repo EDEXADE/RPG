@@ -1,20 +1,26 @@
+using Iscronium.Models.Buffs;
 using Iscronium.Models.Statss;
 using Iscronium.Models.Items;
 using Iscronium.Models.Units.Actions;
+using Iscronium.Models.Units.Races;
 
 namespace Iscronium.Models.Units;
 
 public class Player: Unit, IInteractive
 {
-    // Fields
+    // Fields and Properties
+    public Race Race { get; }
+    
     public Level Level { get; private set; }
-    public readonly Stats Stats;
-    public readonly Inventory Inventory;
+    public Stats Stats { get; }
+    private Inventory Inventory { get; }
 
     // Constructor
-    public Player(string name)
+    public Player(string name, Race race)
         : base(name, UnitType.Player)
     {
+        Race = race;
+        
         Level = new Level();
         Stats = new Stats();
         Inventory = new Inventory();
@@ -36,10 +42,10 @@ public class Player: Unit, IInteractive
     
     public void AddExp(int exp)
     {
-        int last_level = Level.CurrentLevel;
+        int lastLevel = Level.CurrentLevel;
         Level = new Level(Level, exp);
-        for (int i = last_level + 1; i <= Level.CurrentLevel; i++)
-            OnNewLvl(i);
+        for (var level = lastLevel + 1; level <= Level.CurrentLevel; level++)
+            OnNewLvl(level);
     }
     
     public void Use(Item item) => Inventory.Use(item);
@@ -58,13 +64,9 @@ public class Player: Unit, IInteractive
 
     public void About()
     {
-        Console.WriteLine($"My profile:");
+        Console.WriteLine("My profile:");
         Console.WriteLine($"Name: {name}");
-        /*
-         * todo.
-        Console.WriteLine($"Race: {race}");
-        Console.WriteLine($"Type: {type}");
-        */
+        Console.WriteLine($"Race: {Race.CurrentRace}");
 
         Level.GetInfo();
         Stats.GetInfo();

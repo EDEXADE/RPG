@@ -15,4 +15,4 @@ system.AddExp(player, 5000);
 // (2 500/1000) + 5000 = (3 0/1500) + 4500 = (4 0/2000) + 3000 = (5 0/2500) + 1000 = (5 1000/2500)
 Console.WriteLine(player.Level.CurrentLevel);
 // 5 lvl -> 5 + (5 - 1) * 2 = 13
-Console.WriteLine(player.Stats.GetStats().Add(StatType.Dexterity, 5));
+Console.WriteLine(player.Stats.FreePoints);
