@@ -1,8 +1,8 @@
 using Iscronium.Models.Buffs;
 using Iscronium.Models.Statss;
 using Iscronium.Models.Items;
+using Iscronium.Models.Races;
 using Iscronium.Models.Units.Actions;
-using Iscronium.Models.Units.Races;
 
 namespace Iscronium.Models.Units;
 
@@ -13,6 +13,8 @@ public class Player: Unit, IInteractive
     
     public Level Level { get; private set; }
     public Stats Stats { get; }
+    private Equipment Equipment { get; }
+
     private Inventory Inventory { get; }
 
     // Constructor

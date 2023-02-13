@@ -2,22 +2,14 @@ using Iscronium.Models.Items.Actions;
 
 namespace Iscronium.Models.Items;
 
-// Class of all weapons.
+// Class of all armors.
 // This is item. Can be equipped. (Item, IEquipped)
-public class Weapon: Item, IEquipped
+public class Armor: Item, IEquipped
 {
-    // Constructor
-    public Weapon(string name, string description, Uri photo)
-        : base(ItemType.Weapon, name, description, photo)
+    public Armor(ItemType type, string name, string description, Uri photo) : base(type, name, description, photo)
     {
     }
-    
-    // Methods
-    public void OnAtack()
-    {
-        
-    }
-    
+
     // Realise abstraction of Item
     public override void Use()
     {

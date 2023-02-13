@@ -1,10 +1,10 @@
 using Iscronium.Models.Bonuses;
 
-namespace Iscronium.Models.Units.Races;
+namespace Iscronium.Models.Races;
 
 public abstract class Race
 {
     public abstract RaceType CurrentRace { get; }
     public abstract string Description { get; }
-    public abstract List<Bonus> RaceBonuses { get; }
+    public abstract List<SimpleStatBonus> RaceBonuses { get; }
 }

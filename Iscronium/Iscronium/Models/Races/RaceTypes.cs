@@ -1,4 +1,4 @@
-namespace Iscronium.Models.Units.Races;
+namespace Iscronium.Models.Races;
 
 public enum RaceType
 {

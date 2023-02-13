@@ -3,7 +3,7 @@
 public enum ItemType
 {
     Weapon,
-    Equipment,
+    Armor,
     Food,
     Potion,
     Collection,

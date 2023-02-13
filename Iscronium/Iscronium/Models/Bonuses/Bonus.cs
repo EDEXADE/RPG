@@ -2,14 +2,10 @@ using Iscronium.Models.Statss;
 
 namespace Iscronium.Models.Bonuses;
 
-public readonly struct Bonus
+public class Bonus
 {
-    public readonly StatType Stat;
-    public readonly int Value;
-
-    public Bonus(StatType stat, int value)
+    public Bonus(StatType stat, Func<double> func)
     {
-        Stat = stat;
-        Value = value;
+        
     }
 }
